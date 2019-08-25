@@ -24,8 +24,10 @@
     "@nestjs/graphql": "^6.4.2",
     "@nestjs/platform-express": "^6.0.0",
     "apollo-server-express": "^2.9.0",
+    "csurf": "^1.10.0",
     "graphql": "^14.5.3",
     "graphql-tools": "^4.0.5",
+    "helmet": "^3.20.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3"
