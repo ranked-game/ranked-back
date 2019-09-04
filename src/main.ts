@@ -13,6 +13,8 @@ async function bootstrap() {
   app.use(helmet());
   app.use(csurf());
 
-  await app.listen(3000);
+  // Run server
+  const port = process.env.PORT || 6001;
+  await app.listen(port);
 }
 bootstrap();
