@@ -1,12 +1,10 @@
 // Core
 import { Module } from '@nestjs/common';
 
-// Utils
-import { join } from 'path';
+// Modules
+import { AuthorizationModule } from './';
 
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [],
+  imports: [AuthorizationModule],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 // Core
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './modules/app.module';
 
 // Middlewares
 import * as csurf from 'csurf';
