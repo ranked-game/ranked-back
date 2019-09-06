@@ -1,10 +1,15 @@
-import { Controller, Get, Res } from '@nestjs/common';
+// Core
+import { Controller, Get, Res, Query } from '@nestjs/common';
 
-import { GoogleAuthService } from './auth.service';
+// Services
+import { DiscordAuthService, GoogleAuthService } from './services';
 
-@Controller()
+@Controller('auth')
 export class AuthorizationController {
-  constructor(private readonly googleAuthService: GoogleAuthService) {}
+  constructor(
+    private readonly googleAuthService: GoogleAuthService,
+    private readonly discordAuthService: DiscordAuthService,
+  ) {}
 
   @Get('google')
   async google(@Res() res) {
@@ -13,14 +18,28 @@ export class AuthorizationController {
   }
 
   @Get('google/callback')
-  async googleCallback() {}
+  async googleCallback(@Query() params, @Res() res) {
+    const { code } = params;
+    const authData = await this.googleAuthService.userDataByCode(code);
+
+    // TODO: Save to DB and redirect
+
+    return res.json({ success: true, data: authData });
+  }
 
   @Get('discord')
   async discord(@Res() res) {
-    const url = '';
+    const url = this.discordAuthService.getRedirectUrl();
     res.redirect(url);
   }
 
   @Get('discord/callback')
-  async discordCallback() {}
+  async discordCallback(@Query() params, @Res() res) {
+    const { code } = params;
+    const authData = await this.discordAuthService.userDataByCode(code);
+
+    // TODO: Save to DB and redirect
+
+    return res.json({ success: true, data: authData });
+  }
 }

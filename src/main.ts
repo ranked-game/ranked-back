@@ -11,7 +11,8 @@ async function bootstrap() {
 
   // Add middlewares
   app.use(helmet());
-  app.use(csurf());
+  // app.use(csurf());
+  app.setGlobalPrefix('api');
 
   // Run server
   const port = process.env.PORT || 6001;

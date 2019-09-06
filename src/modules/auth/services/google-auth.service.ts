@@ -4,9 +4,13 @@ import { google } from 'googleapis';
 import { OAuth2Client } from 'googleapis-common';
 
 const googleConfig = {
-  clientId: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  redirect: process.env.GOOGLE_REDIRECT_URL,
+  clientId:
+    process.env.GOOGLE_CLIENT_ID ||
+    '833015675717-7movf696if9ehv15gr9o2htgej4qnt4c.apps.googleusercontent.com',
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'b1zDQVcImLOgwDEs4VqVdALk',
+  redirect:
+    process.env.GOOGLE_REDIRECT_URL ||
+    'http://localhost:6001/api/auth/google/callback',
 };
 
 const defaultScope = [
@@ -43,7 +47,7 @@ export class GoogleAuthService {
     return url;
   };
 
-  public getGoogleAccountFromCode = async code => {
+  public userDataByCode = async (code: string) => {
     // Create new google connection
     const auth = this.createConnection();
     const data = await auth.getToken(code);
