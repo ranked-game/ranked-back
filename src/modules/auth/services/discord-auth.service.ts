@@ -7,10 +7,9 @@ const btoa = require('btoa');
 
 @Injectable()
 export class DiscordAuthService {
-  private readonly clientId: string = '618801280738918400';
-  private readonly clientSecret: string = 'MqRU2YUc_IDAlhgyYLXCP_H7AbJoa6p4';
-  private readonly callback: string =
-    'http://localhost:6001/api/auth/discord/callback';
+  private readonly clientId: string = process.env.DISCORD_AUTH_ID;
+  private readonly clientSecret: string = process.env.DISCORD_AUTH_SECRET;
+  private readonly callback: string = process.env.DISCORD_AUTH_CALLBACK;
 
   public getRedirectUrl() {
     return `https://discordapp.com/oauth2/authorize?client_id=${

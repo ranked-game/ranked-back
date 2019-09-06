@@ -4,13 +4,9 @@ import { google } from 'googleapis';
 import { OAuth2Client } from 'googleapis-common';
 
 const googleConfig = {
-  clientId:
-    process.env.GOOGLE_CLIENT_ID ||
-    '833015675717-7movf696if9ehv15gr9o2htgej4qnt4c.apps.googleusercontent.com',
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'b1zDQVcImLOgwDEs4VqVdALk',
-  redirect:
-    process.env.GOOGLE_REDIRECT_URL ||
-    'http://localhost:6001/api/auth/google/callback',
+  clientId: process.env.GOOGLE_AUTH_ID,
+  clientSecret: process.env.GOOGLE_AUTH_SECRET,
+  redirect: process.env.GOOGLE_AUTH_CALLBACK,
 };
 
 const defaultScope = [
