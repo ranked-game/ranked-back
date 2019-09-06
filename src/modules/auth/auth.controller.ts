@@ -21,10 +21,17 @@ export class AuthorizationController {
   async googleCallback(@Query() params, @Res() res) {
     const { code } = params;
     const authData = await this.googleAuthService.userDataByCode(code);
+    if (!authData) {
+      return res.redirect(
+        'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/failed.html',
+      );
+    }
 
-    // TODO: Save to DB and redirect
+    // TODO: Save to DB
 
-    return res.json({ success: true, data: authData });
+    return res.redirect(
+      'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
+    );
   }
 
   @Get('discord')
@@ -38,8 +45,16 @@ export class AuthorizationController {
     const { code } = params;
     const authData = await this.discordAuthService.userDataByCode(code);
 
-    // TODO: Save to DB and redirect
+    if (!authData) {
+      return res.redirect(
+        'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/failed.html',
+      );
+    }
 
-    return res.json({ success: true, data: authData });
+    // TODO: Save to DB
+
+    return res.redirect(
+      'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
+    );
   }
 }
