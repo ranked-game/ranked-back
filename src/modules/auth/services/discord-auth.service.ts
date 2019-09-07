@@ -40,6 +40,9 @@ export class DiscordAuthService {
       },
     });
     const account = await accountResponse.json();
+    if (!account.verified) {
+      return null;
+    }
 
     return account;
   }
