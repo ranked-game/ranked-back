@@ -1,8 +1,16 @@
 {
-  "AWSEBDockerrunVersion": "1",
-  "Image": {
-    "Name": "821925855770.dkr.ecr.eu-north-1.amazonaws.com/kmelct/ranked-app:latest",
-    "Update": "true"
-  },
-  "Ports": [{ "ContainerPort": 80 }]
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "ranked-app",
+      "image": "821925855770.dkr.ecr.eu-north-1.amazonaws.com/kmelct/ranked-app:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 6001
+        }
+      ]
+    }
+  ]
 }

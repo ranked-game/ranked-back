@@ -1,2 +1,5 @@
 /node_modules
-/dist
+/dist# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore
