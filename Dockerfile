@@ -1,20 +1,23 @@
-# Install node v11
-FROM node:12
+# Builder
+FROM node:12 AS builder
 
-# Copy the package.json to workdir
+# Prepare data
+WORKDIR /app
 COPY package.json ./
-
-# Run npm install - install the npm dependencies
 RUN npm install
-
-# Copy application source
 COPY . .
 
-# Expose application ports
-EXPOSE 80
-
-# Generate build
+# Build
 RUN npm run build
+RUN rm -rf src
+RUN rm -rf test
 
-# Start the application
+
+# Application
+FROM node:12-alpine
+
+COPY --from=builder /app /app
+WORKDIR /app
+
+EXPOSE 80
 CMD ["npm", "run", "start:prod"]
