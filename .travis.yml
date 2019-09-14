@@ -18,4 +18,4 @@ after_success:
   - eval $(aws ecr get-login --region us-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
   - docker build -t kmelct/ranked-app .
   - docker tag kmelct/ranked-app:latest 821925855770.dkr.ecr.eu-north-1.amazonaws.com/kmelct/ranked-app:latest
-  - 821925855770.dkr.ecr.eu-north-1.amazonaws.com/kmelct/ranked-app:latest
+  - docker push 821925855770.dkr.ecr.eu-north-1.amazonaws.com/kmelct/ranked-app:latest
