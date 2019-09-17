@@ -1,9 +1,10 @@
+// Config
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 // Core
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
-
-// Config
-import * as dotenv from 'dotenv';
 
 // Middlewares
 import * as csurf from 'csurf';
@@ -23,5 +24,4 @@ async function bootstrap() {
   const port = process.env.PORT || 6001;
   await app.listen(port);
 }
-dotenv.config();
 bootstrap();
