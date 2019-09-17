@@ -1,5 +1,7 @@
+// Core
 import { Module } from '@nestjs/common';
 
+// Modules
 import { AuthorizationController } from './auth.controller';
 import { GoogleAuthService, DiscordAuthService } from './services';
 
