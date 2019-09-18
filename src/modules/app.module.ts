@@ -2,9 +2,9 @@
 import { Module } from '@nestjs/common';
 
 // Modules
-import { AuthorizationModule, DblModule } from './';
+import { AuthorizationModule } from './';
 
 @Module({
-  imports: [AuthorizationModule, DblModule],
+  imports: [AuthorizationModule],
 })
 export class AppModule {}
