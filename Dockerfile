@@ -9,6 +9,10 @@ COPY . .
 
 # Build
 RUN npm run build
+RUN rm -rf node_modules
+
+# Install production dependencies
+RUN npm install --production
 RUN rm -rf src
 RUN rm -rf test
 
