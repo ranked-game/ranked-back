@@ -2,6 +2,8 @@
 import { Controller, Get, Res, Query } from '@nestjs/common';
 
 // Services
+// Services
+import { AccountsService } from '../accounts/services/accounts.service';
 import { DiscordAuthService, GoogleAuthService } from './services';
 
 @Controller('auth')
@@ -9,6 +11,7 @@ export class AuthorizationController {
   constructor(
     private readonly googleAuthService: GoogleAuthService,
     private readonly discordAuthService: DiscordAuthService,
+    private readonly accountsService: AccountsService,
   ) {}
 
   @Get('google')
@@ -28,6 +31,7 @@ export class AuthorizationController {
     }
 
     // TODO: Save to DB
+    await this.accountsService.create(authData.email);
 
     return res.redirect(
       'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',

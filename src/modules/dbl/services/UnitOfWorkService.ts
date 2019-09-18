@@ -13,7 +13,7 @@ export class UnitOfWorkService {
     private readonly accountRepository: Repository<Account>,
   ) {}
 
-  account(): Repository<Account> {
+  getAccountRepository(): Repository<Account> {
     return this.accountRepository;
   }
 }

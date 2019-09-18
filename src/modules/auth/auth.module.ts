@@ -2,13 +2,13 @@
 import { Module } from '@nestjs/common';
 
 // Modules
-import { DblModule } from '../dbl/dbl.module';
+import { AccountsModule } from '../accounts/accounts.module';
 import { AuthorizationController } from './auth.controller';
 import { GoogleAuthService, DiscordAuthService } from './services';
 
 @Module({
   controllers: [AuthorizationController],
   providers: [GoogleAuthService, DiscordAuthService],
-  imports: [DblModule],
+  imports: [AccountsModule],
 })
 export class AuthorizationModule {}
