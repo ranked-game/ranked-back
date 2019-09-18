@@ -14,10 +14,19 @@ export class AccountsService {
 
   async create(email: string) {
     const accountRepository = this.unitOfWorkService.getAccountRepository();
-    const a = new AccountEntity();
-    a.id = uuid();
-    a.email = email;
-    const account = await accountRepository.insert(a);
+
+    const accountEntity = new AccountEntity();
+    accountEntity.id = uuid();
+    accountEntity.email = email;
+
+    await accountRepository.insert(accountEntity);
+
+    return accountEntity;
+  }
+
+  async findByEmail(email: string) {
+    const accountRepository = this.unitOfWorkService.getAccountRepository();
+    const account = await accountRepository.findOne({ where: { email } });
 
     return account;
   }

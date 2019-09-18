@@ -5,6 +5,6 @@ export class AccountEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 50 })
+  @Column({ length: 300, nullable: false, unique: true })
   email: string;
 }

@@ -10,10 +10,10 @@ import { AccountEntity } from '../models';
 export class UnitOfWorkService {
   constructor(
     @InjectRepository(AccountEntity)
-    private readonly accountRepository: Repository<Account>,
+    private readonly accountRepository: Repository<AccountEntity>,
   ) {}
 
-  getAccountRepository(): Repository<Account> {
+  getAccountRepository(): Repository<AccountEntity> {
     return this.accountRepository;
   }
 }

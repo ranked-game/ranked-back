@@ -2,7 +2,6 @@
 import { Controller, Get, Res, Query } from '@nestjs/common';
 
 // Services
-// Services
 import { AccountsService } from '../accounts/services/accounts.service';
 import { DiscordAuthService, GoogleAuthService } from './services';
 
@@ -22,6 +21,7 @@ export class AuthorizationController {
 
   @Get('google/callback')
   async googleCallback(@Query() params, @Res() res) {
+    // Get auth data by code
     const { code } = params;
     const authData = await this.googleAuthService.userDataByCode(code);
     if (!authData) {
@@ -30,8 +30,14 @@ export class AuthorizationController {
       );
     }
 
-    // TODO: Save to DB
-    await this.accountsService.create(authData.email);
+    // Create new account if not exists
+    const { email } = authData;
+    let account = await this.accountsService.findByEmail(email);
+    if (!account) {
+      account = await this.accountsService.create(authData.email);
+    }
+
+    // TODO: Generate auth tokens
 
     return res.redirect(
       'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
@@ -55,7 +61,14 @@ export class AuthorizationController {
       );
     }
 
-    // TODO: Save to DB
+    // Create new account if not exists
+    const { email } = authData;
+    let account = await this.accountsService.findByEmail(email);
+    if (!account) {
+      account = await this.accountsService.create(authData.email);
+    }
+
+    // TODO: Generate auth tokens
 
     return res.redirect(
       'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
