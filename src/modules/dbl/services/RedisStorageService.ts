@@ -17,7 +17,7 @@ export class RedisStorageService {
     return this.client;
   }
 
-  async hset(redisKey: string, key: string, value: string, expires) {
+  async hset(redisKey: string, key: string, value: string, expires: number) {
     if (!this.client) {
       await this.getClient();
     }
@@ -25,28 +25,20 @@ export class RedisStorageService {
       `REDIS save\n redisKey: ${redisKey}\n key: ${key}\n val: ${value}\n exp: ${expires}\n `,
     );
 
-    return new Promise((resolve, reject) => {
-      this.client.hset(redisKey, key, value, (error, result) => {
-        if (error) {
-          reject(error);
-        } else {
-          this.client.expire(key, expires);
-          resolve(result);
-        }
-      });
-    });
+    await this.client.hset(redisKey, key, value);
   }
 
   async get(redisKey: string, key: string): Promise<string> {
-    this.logger.log(`REDIS get\n redisKey: ${redisKey}\n key: ${key}\n `);
     if (!this.client) {
       await this.getClient();
     }
+    this.logger.log(`REDIS get\n redisKey: ${redisKey}\n key: ${key}\n `);
+
     const result = await this.client.hget(redisKey, key);
     return result;
   }
 
-  async remove(redisKey: string, key: string): Promise<boolean> {
+  async hdel(redisKey: string, key: string): Promise<boolean> {
     this.logger.log(`REDIS remove\n redisKey: ${redisKey}\n key: ${key}\n `);
     await this.client.hdel(redisKey, key);
 
