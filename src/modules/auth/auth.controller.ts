@@ -3,7 +3,18 @@ import { Controller, Get, Res, Query } from '@nestjs/common';
 
 // Services
 import { AccountsService } from '../accounts/services/accounts.service';
-import { DiscordAuthService, GoogleAuthService } from './services';
+import {
+  DiscordAuthService,
+  GoogleAuthService,
+  TokensService,
+} from './services';
+import { RedisStorageService } from './../dbl';
+
+// Utils
+import * as queryString from 'query-string';
+
+// Configs
+import { authRedirects } from './config';
 
 @Controller('auth')
 export class AuthorizationController {
@@ -11,6 +22,8 @@ export class AuthorizationController {
     private readonly googleAuthService: GoogleAuthService,
     private readonly discordAuthService: DiscordAuthService,
     private readonly accountsService: AccountsService,
+    private readonly redisService: RedisStorageService,
+    private readonly tokensService: TokensService,
   ) {}
 
   @Get('google')
@@ -25,9 +38,7 @@ export class AuthorizationController {
     const { code } = params;
     const authData = await this.googleAuthService.userDataByCode(code);
     if (!authData) {
-      return res.redirect(
-        'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/failed.html',
-      );
+      return res.redirect(authRedirects.failed);
     }
 
     // Create new account if not exists
@@ -37,11 +48,20 @@ export class AuthorizationController {
       account = await this.accountsService.create(authData.email);
     }
 
-    // TODO: Generate auth tokens
+    // Generate tokens
+    const tokens = this.tokensService.generateTokens(account);
+    const tokensQuery = queryString.stringify(tokens);
 
-    return res.redirect(
-      'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
+    // Save to redis session
+    await this.redisService.hset(
+      'token',
+      account.id,
+      JSON.stringify({ date: Date.now() }),
     );
+
+    // TODO: Add save session to DB
+
+    return res.redirect(`${authRedirects.success}?${tokensQuery}`);
   }
 
   @Get('discord')
@@ -56,9 +76,7 @@ export class AuthorizationController {
     const authData = await this.discordAuthService.userDataByCode(code);
 
     if (!authData) {
-      return res.redirect(
-        'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/failed.html',
-      );
+      return res.redirect(authRedirects.failed);
     }
 
     // Create new account if not exists
@@ -68,10 +86,19 @@ export class AuthorizationController {
       account = await this.accountsService.create(authData.email);
     }
 
-    // TODO: Generate auth tokens
+    // Generate tokens
+    const tokens = this.tokensService.generateTokens(account);
+    const tokensQuery = queryString.stringify(tokens);
 
-    return res.redirect(
-      'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
+    // Save to redis session
+    await this.redisService.hset(
+      'token',
+      account.id,
+      JSON.stringify({ date: Date.now() }),
     );
+
+    // TODO: Add save session to DB
+
+    return res.redirect(`${authRedirects.success}?${tokensQuery}`);
   }
 }

@@ -17,12 +17,12 @@ export class RedisStorageService {
     return this.client;
   }
 
-  async hset(redisKey: string, key: string, value: string, expires: number) {
+  async hset(redisKey: string, key: string, value: string) {
     if (!this.client) {
       await this.getClient();
     }
     this.logger.log(
-      `REDIS save\n redisKey: ${redisKey}\n key: ${key}\n val: ${value}\n exp: ${expires}\n `,
+      `REDIS save\n redisKey: ${redisKey}\n key: ${key}\n val: ${value}\n`,
     );
 
     await this.client.hset(redisKey, key, value);

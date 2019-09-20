@@ -1,6 +1,6 @@
 // Core
 import { Module, Logger } from '@nestjs/common';
-import { RedisService, RedisModule } from 'nestjs-redis';
+import { RedisModule } from 'nestjs-redis';
 
 // ORM
 import { TypeOrmModule } from '@nestjs/typeorm';
