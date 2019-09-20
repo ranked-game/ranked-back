@@ -56,7 +56,7 @@ export class AuthorizationController {
     await this.redisService.hset(
       'token',
       account.id,
-      JSON.stringify({ date: Date.now() }),
+      JSON.stringify({ date: Date.now(), token: tokens.refresh }),
     );
 
     // TODO: Add save session to DB
@@ -94,7 +94,7 @@ export class AuthorizationController {
     await this.redisService.hset(
       'token',
       account.id,
-      JSON.stringify({ date: Date.now() }),
+      JSON.stringify({ date: Date.now(), token: tokens.refresh }),
     );
 
     // TODO: Add save session to DB
