@@ -1,4 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+
+// Models
+import { GameEntity } from '.';
 
 @Entity('accounts')
 export class AccountEntity {
@@ -7,4 +17,13 @@ export class AccountEntity {
 
   @Column({ length: 300, nullable: false, unique: true })
   email: string;
+
+  @CreateDateColumn()
+  created: string;
+
+  @UpdateDateColumn()
+  updated: number;
+
+  @OneToMany(type => GameEntity, game => game.account)
+  games: GameEntity[];
 }
