@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 // Models
-import { AccountEntity } from '.';
+import { AccountEntity } from './account.entity';
 
 @Entity('games')
 export class GameEntity {
