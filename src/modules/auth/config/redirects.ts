@@ -1,6 +1,6 @@
 export const authRedirects = {
   success:
-    'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
+    'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/success.html',
   failed:
-    'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/failed.html',
+    'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/failed.html',
 };
