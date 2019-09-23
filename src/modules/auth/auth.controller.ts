@@ -58,7 +58,7 @@ export class AuthorizationController {
       account.id,
       JSON.stringify({ date: Date.now(), token: tokens.refresh }),
     );
-    
+
     return res.redirect(`${authRedirects.success}?${tokensQuery}`);
   }
 
@@ -94,7 +94,7 @@ export class AuthorizationController {
       account.id,
       JSON.stringify({ date: Date.now(), token: tokens.refresh }),
     );
-    
+
     return res.redirect(`${authRedirects.success}?${tokensQuery}`);
   }
 }
