@@ -58,9 +58,7 @@ export class AuthorizationController {
       account.id,
       JSON.stringify({ date: Date.now(), token: tokens.refresh }),
     );
-
-    // TODO: Add save session to DB
-
+    
     return res.redirect(`${authRedirects.success}?${tokensQuery}`);
   }
 
@@ -96,9 +94,7 @@ export class AuthorizationController {
       account.id,
       JSON.stringify({ date: Date.now(), token: tokens.refresh }),
     );
-
-    // TODO: Add save session to DB
-
+    
     return res.redirect(`${authRedirects.success}?${tokensQuery}`);
   }
 }
