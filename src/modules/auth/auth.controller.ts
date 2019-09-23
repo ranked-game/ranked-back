@@ -26,7 +26,7 @@ export class AuthorizationController {
     const authData = await this.googleAuthService.userDataByCode(code);
     if (!authData) {
       return res.redirect(
-        'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/failed.html',
+        'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/failed.html',
       );
     }
 
@@ -40,7 +40,7 @@ export class AuthorizationController {
     // TODO: Generate auth tokens
 
     return res.redirect(
-      'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
+      'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/success.html',
     );
   }
 
@@ -57,7 +57,7 @@ export class AuthorizationController {
 
     if (!authData) {
       return res.redirect(
-        'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/failed.html',
+        'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/failed.html',
       );
     }
 
@@ -71,7 +71,7 @@ export class AuthorizationController {
     // TODO: Generate auth tokens
 
     return res.redirect(
-      'overwolf-extension://jpofjgdffhginlkgjeckjcpeppdecofdcdfdclnn/success.html',
+      'overwolf-extension://gkdpbpcoeckfaoghjgpagdamgijpigddeeennllh/success.html',
     );
   }
 }
