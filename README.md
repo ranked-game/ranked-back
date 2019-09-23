@@ -2,20 +2,22 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://avatars3.githubusercontent.com/u/54067924?s=200&v=4" width="100" alt="Ranked logo" /></a>
 </p>
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-
-  <p align="center">Backend for Ranked Game written with  
+<p align="center">Backend for Ranked Game written with  
   <a href="http://nodejs.org" target="blank">Node.js</a> 
-  and TypeScript Nest.js framework</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  and TypeScript Nest.js framework
+</p>
+
+<p align="center">
+  <a href="https://travis-ci.org/nestjs/nest">
+    <img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" />
+  </a>
+  <a href="https://travis-ci.org/nestjs/nest">
+    <img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" />
+  </a>
+  <a href="https://www.codacy.com/manual/kmelct/ranked-back?utm_source=github.com&utm_medium=referral&utm_content=ranked-game/ranked-back&utm_campaign=Badge_Grade">
+    <img src="https://api.codacy.com/project/badge/Grade/ee29bf6699fd4058ae0b3f2f92606c6d" alt="Style" />
+  </a>
+</p>
 
 ## Description
 
