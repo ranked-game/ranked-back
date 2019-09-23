@@ -1,25 +1,27 @@
 // Core
 import { Module, Logger } from '@nestjs/common';
+import { RedisModule } from 'nestjs-redis';
 
 // ORM
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 // Module
-import { UnitOfWorkService } from './services/UnitOfWorkService';
+import { UnitOfWorkService, RedisStorageService } from './services';
 import { AccountEntity } from './models';
 
 // Configs
-import { ormConfig } from './config';
+import { ormConfig, redisConfig } from './config';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(ormConfig),
     TypeOrmModule.forFeature([AccountEntity]),
+    RedisModule.register(redisConfig),
   ],
   controllers: [],
-  providers: [UnitOfWorkService],
-  exports: [UnitOfWorkService],
+  providers: [UnitOfWorkService, RedisStorageService],
+  exports: [UnitOfWorkService, RedisStorageService],
 })
 export class DblModule {
   private readonly logger = new Logger(DblModule.name);
