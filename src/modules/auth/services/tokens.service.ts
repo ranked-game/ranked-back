@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 // Utils
 import * as jwt from 'jsonwebtoken';
-import * as randToken from 'rand-token';
+import { v4 as uuid } from 'uuid';
 
 // Config
 import { jwtConfig } from '../config';
@@ -11,8 +11,6 @@ import { AccountEntity } from 'src/modules/dbl/models';
 
 @Injectable()
 export class TokensService {
-  constructor() {}
-
   public generateTokens(account: AccountEntity) {
     const access = this.generateAuthToken(account);
     const refresh = this.generateRefreshToken();
@@ -32,7 +30,7 @@ export class TokensService {
   }
 
   private generateRefreshToken() {
-    const token = randToken.generate();
+    const token = uuid();
 
     return token;
   }
