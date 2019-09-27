@@ -7,9 +7,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
 
 // Middlewares
-import * as csurf from 'csurf';
-import * as helmet from 'helmet';
-import * as cookieParser from 'cookie-parser';
+import csurf from 'csurf';
+import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
