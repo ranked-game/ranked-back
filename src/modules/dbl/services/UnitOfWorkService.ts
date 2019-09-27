@@ -19,6 +19,6 @@ export class UnitOfWorkService {
   }
 
   getMvpSubscribersRepository(): Repository<MvpSubscribersEntity> {
-    return this.accountRepository;
+    return this.mvpSubscribersRepository;
   }
 }
