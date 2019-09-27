@@ -16,19 +16,17 @@ export class EmailService {
 
   public async sendPromotionalEmail(receiver: string) {
     const mailOptions = {
-      from: 'Ranked Game <noreply@ranked.game>',
+      from: 'Ranked Game <mvp@ranked.game>',
       to: receiver,
       subject: 'Ranked Subscription',
     };
 
-    if (process.env.NODE_ENV === 'prod') {
-      this.transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          this.logger.error(err);
-        } else {
-          this.logger.log(info);
-        }
-      });
-    }
+    this.transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        this.logger.error(err);
+      } else {
+        this.logger.log(info);
+      }
+    });
   }
 }
