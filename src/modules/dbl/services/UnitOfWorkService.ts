@@ -11,6 +11,7 @@ export class UnitOfWorkService {
   constructor(
     @InjectRepository(AccountEntity)
     private readonly accountRepository: Repository<AccountEntity>,
+    @InjectRepository(MvpSubscribersEntity)
     private readonly mvpSubscribersRepository: Repository<MvpSubscribersEntity>,
   ) {}
 

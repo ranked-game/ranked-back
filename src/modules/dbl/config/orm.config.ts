@@ -9,7 +9,7 @@ export const ormConfig: TypeOrmModuleOptions = {
   password: dbConfig.password,
   database: dbConfig.database,
   entities: ['dist/**/*.entity{.ts,.js}', __dirname + '../**/*.entity{.ts}'],
-  migrations: ['dist/src/modules/dbl/migrations/**/*.js'],
+  migrations: ['dist/modules/dbl/migrations/**/*.js'],
   cli: {
     migrationsDir: 'src/modules/dbl/migrations',
   },

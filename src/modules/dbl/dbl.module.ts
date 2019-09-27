@@ -8,7 +8,7 @@ import { Connection } from 'typeorm';
 
 // Module
 import { UnitOfWorkService, RedisStorageService } from './services';
-import { AccountEntity } from './models';
+import { AccountEntity, MvpSubscribersEntity } from './models';
 
 // Configs
 import { ormConfig, redisConfig } from './config';
@@ -16,7 +16,7 @@ import { ormConfig, redisConfig } from './config';
 @Module({
   imports: [
     TypeOrmModule.forRoot(ormConfig),
-    TypeOrmModule.forFeature([AccountEntity]),
+    TypeOrmModule.forFeature([AccountEntity, MvpSubscribersEntity]),
     RedisModule.register(redisConfig),
   ],
   controllers: [],
