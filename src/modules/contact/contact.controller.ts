@@ -23,7 +23,7 @@ export class ContactController {
     const { email } = subscriber;
 
     // Send email
-    // await this.emailService.sendPromotionalEmail(email);
+    await this.emailService.sendPromotionalEmail(email);
 
     // Save to db
     const mvpRepository = await this.unitOfWork.getMvpSubscribersRepository();

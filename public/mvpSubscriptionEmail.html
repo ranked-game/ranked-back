@@ -1,12 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Thanks for your subscription</h1>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+
+                z-index: 2;
+
+                font-family: Roboto, sans-serif;
+            }
+
+            body {
+                background: #0d013c;
+                color: #0d013c;
+                font-family: sans-serif;
+                padding: 1rem 0;
+            }
+
+            .orange {
+                color: #fe650f;
+            }
+
+            .logo {
+                display: block;
+                width: 10rem;
+
+                margin: 0 auto 1rem;
+            }
+
+            .container {
+                background: #fff;
+                width: 90%;
+                min-width: 320px;
+                margin: 1rem;
+
+                border-radius: 8px;
+
+                padding: 1rem;
+            }
+
+            .title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .greetingText {
+                margin: 1rem 0 1.5rem;
+            }
+
+            .afterText {
+                margin: 1.5rem 0 0;
+                font-size: 0.9rem;
+            }
+
+            .step {
+                display: block;
+                width: 50%;
+                max-width: 13rem;
+                margin: 0.5rem 0;
+            }
+
+            .line {
+                width: 3px;
+                height: 1rem;
+            }
+
+            .ps {
+                font-size: 0.8rem;
+                margin-top: 1rem;
+                color: #d4cbf9;
+                width: 80%;
+            }
+
+            .unsub {
+                font-size: 0.6rem;
+                color: #d4cbf9;
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <script>
+            // setInterval(() => window.location.reload(), 2000);
+        </script>
+        <title>Buff Game</title>
+    </head>
+    <body>
+        <table width="100%" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="center">
+                    <img
+                        class="logo"
+                        src="https://wizardly-morse-37598a.netlify.com/static/assets/svg/logoHorizontal.svg"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <div class="container">
+                        <p class="title">Welcome on Board!</p>
+                        <p class="greetingText">
+                            We're happy that you've applied for closed beta access! But before we
+                            can start, you have to follow next steps:
+                        </p>
+                        <a href="https://discord.gg/xtKD9U" target="_blank"
+                            ><img
+                                class="step"
+                                src="https://www.filepicker.io/api/file/6Gs1n9xHSCi6ifmmty4D"
+                            />
+                        </a>
+
+                        <img
+                            class="line"
+                            src="https://firebasestorage.googleapis.com/v0/b/ranked-game.appspot.com/o/Line.png?alt=media&token=9e407d1d-651e-4a9b-867f-9c0eb3697e60"
+                        />
+                        <a
+                            href="https://www.facebook.com/Ranked-Game-106886087345863/"
+                            target="_blank"
+                            ><img
+                                class="step"
+                                src="https://firebasestorage.googleapis.com/v0/b/ranked-game.appspot.com/o/image%20url.png?alt=media&token=8bee3a3a-88ff-444b-8101-2e74fd41045b"
+                            />
+                        </a>
+
+                        <img
+                            class="line"
+                            src="https://firebasestorage.googleapis.com/v0/b/ranked-game.appspot.com/o/Line.png?alt=media&token=9e407d1d-651e-4a9b-867f-9c0eb3697e60"
+                        />
+                        <a href="https://www.overwolf.com/app/Ranked_Game-Ranked" target="_blank"
+                            ><img
+                                class="step"
+                                src="https://csgoscout.gg/img/overwolf-appstore-badge.png"
+                            />
+                        </a>
+                        <p class="afterText">
+                            After you've done everything from above, you'll have an access to Ranked
+                            application - feel free to sign up and follow the Startup Guide
+                        </p>
+                        <p class="afterText">
+                            If you have any questions - we're always available at Discord or on
+                            Facebook
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <footer>
+                        <p class="ps">
+                            P.S.: Mind that Ranked is currently only available for Windows PC
+                        </p>
+                        <a href="#" class="unsub">Unsubscribe</a>
+                    </footer>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>
