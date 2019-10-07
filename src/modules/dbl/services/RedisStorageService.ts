@@ -28,7 +28,7 @@ export class RedisStorageService {
     await this.client.hset(redisKey, key, value);
   }
 
-  async get(redisKey: string, key: string): Promise<string> {
+  async hget(redisKey: string, key: string): Promise<string> {
     if (!this.client) {
       await this.getClient();
     }

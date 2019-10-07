@@ -13,7 +13,7 @@ export class UnitOfWorkService {
     private readonly accountRepository: Repository<AccountEntity>,
     @InjectRepository(MvpSubscribersEntity)
     private readonly mvpSubscribersRepository: Repository<MvpSubscribersEntity>,
-    @InjectRepository(MvpSubscribersEntity)
+    @InjectRepository(GameEntity)
     private readonly gamesRepository: Repository<GameEntity>,
   ) {}
 
@@ -25,7 +25,7 @@ export class UnitOfWorkService {
     return this.mvpSubscribersRepository;
   }
 
-  getGameEntity(): Repository<GameEntity> {
+  getGamesRepository(): Repository<GameEntity> {
     return this.gamesRepository;
   }
 }

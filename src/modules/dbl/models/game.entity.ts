@@ -16,7 +16,10 @@ export class GameEntity {
   id: string;
 
   @Column()
-  gameId: number;
+  gameId: string;
+
+  @Column()
+  duration: number;
 
   @Column('uuid')
   accountId: string;

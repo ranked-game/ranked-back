@@ -1,8 +1,8 @@
 // Core
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, HttpException } from '@nestjs/common';
 
 // Dto
-import { StartGameDto } from './dto';
+import { StartGameDto, EndGameDto } from './dto';
 
 // Services
 import { TrackerService } from './services';
@@ -25,5 +25,23 @@ export class GamesController {
   }
 
   @Post('/end')
-  async endGame() {}
+  async endGame(@Body() endGame: EndGameDto, @User('id') accountId: string) {
+    // Calculate game duration
+    const duration = await this.trackerService.gameDuration(endGame, accountId);
+    if (!duration) {
+      throw new HttpException(
+        { success: false, error: 'Unable to finish game' },
+        403,
+      );
+    }
+
+    // Create end game record
+    const data = await this.trackerService.endGame(
+      endGame,
+      accountId,
+      duration,
+    );
+
+    return { success: true, data };
+  }
 }
