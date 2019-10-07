@@ -18,14 +18,15 @@ interface IGetUserAuthInfoRequest extends Request {
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   async use(req: IGetUserAuthInfoRequest, res: Response, next: NextFunction) {
-    const authHeaders = req.headers.authorization;
-    if (authHeaders && (authHeaders as string).split(' ')[1]) {
-      const token = (authHeaders as string).split(' ')[1];
+    const header = req.header('Authorization');
+    if (header) {
+      const token = header;
 
       try {
         const decoded = jwt.verify(token, jwtConfig.secret);
         req.user = decoded;
       } catch (e) {
+        console.log(e);
         throw new HttpException('Not authorized.', HttpStatus.UNAUTHORIZED);
       }
 

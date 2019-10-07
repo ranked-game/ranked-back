@@ -19,7 +19,9 @@ export class GamesController {
     @Body() startGame: StartGameDto,
     @User('id') accountId: string,
   ) {
-    await this.trackerService.startGame(startGame);
+    await this.trackerService.startGame(startGame, accountId);
+
+    return { success: true, data: startGame };
   }
 
   @Post('/end')
