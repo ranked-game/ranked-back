@@ -4,12 +4,17 @@ import { Controller, Post, Body } from '@nestjs/common';
 // Dto
 import { StartGameDto } from './dto';
 
+// Services
+import { TrackerService } from './services';
+
 @Controller('games')
 export class GamesController {
-  constructor() {}
+  constructor(private readonly trackerService: TrackerService) {}
 
   @Post('/start')
-  async startGame(@Body() body: StartGameDto) {}
+  async startGame(@Body() body: StartGameDto) {
+    await this.trackerService.startGame(body);
+  }
 
   @Post('/end')
   async endGame() {}
