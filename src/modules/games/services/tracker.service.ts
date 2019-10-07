@@ -14,10 +14,10 @@ export class TrackerService {
     private readonly dbUnit: UnitOfWorkService,
   ) {}
 
-  public async startGame(gameData: StartGameDto) {
+  public async startGame(gameData: StartGameDto, accountId: string) {
     const game = { date: Date.now(), ...gameData };
 
-    await this.redis.hset('game', '1', JSON.stringify(game));
+    await this.redis.hset('game', accountId, JSON.stringify(game));
 
     return true;
   }
