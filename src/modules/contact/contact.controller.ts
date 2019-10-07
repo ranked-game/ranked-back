@@ -1,5 +1,5 @@
 // Core
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 
 // Services
 import { EmailService } from '../mail';
@@ -33,5 +33,14 @@ export class ContactController {
     }
 
     return { success: true };
+  }
+
+  @Get('mvp/subscribe')
+  async subscribers() {
+    // Save to db
+    const mvpRepository = await this.unitOfWork.getMvpSubscribersRepository();
+    const subscribers = await mvpRepository.find();
+
+    return { success: true, data: subscribers };
   }
 }
