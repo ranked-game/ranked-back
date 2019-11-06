@@ -1,5 +1,5 @@
 // Core
-import { Controller, Get, Res, Query } from '@nestjs/common';
+import { Controller, Get, Res, Query, Logger } from '@nestjs/common';
 
 // Services
 import { AccountsService } from '../accounts/services/accounts.service';
@@ -18,6 +18,8 @@ import { authRedirects } from './config';
 
 @Controller('auth')
 export class AuthorizationController {
+  private readonly logger = new Logger(AuthorizationController.name);
+
   constructor(
     private readonly googleAuthService: GoogleAuthService,
     private readonly discordAuthService: DiscordAuthService,
@@ -53,6 +55,7 @@ export class AuthorizationController {
     const tokensQuery = queryString.stringify(tokens);
 
     // Save to redis session
+    this.logger.log(tokens);
     await this.redisService.hset(
       'token',
       account.id,
@@ -89,6 +92,7 @@ export class AuthorizationController {
     const tokensQuery = queryString.stringify(tokens);
 
     // Save to redis session
+    this.logger.log(tokens);
     await this.redisService.hset(
       'token',
       account.id,

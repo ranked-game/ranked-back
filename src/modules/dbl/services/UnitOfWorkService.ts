@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 // Models
-import { AccountEntity, MvpSubscribersEntity } from '../models';
+import { AccountEntity, MvpSubscribersEntity, GameEntity } from '../models';
 
 @Injectable()
 export class UnitOfWorkService {
@@ -13,6 +13,8 @@ export class UnitOfWorkService {
     private readonly accountRepository: Repository<AccountEntity>,
     @InjectRepository(MvpSubscribersEntity)
     private readonly mvpSubscribersRepository: Repository<MvpSubscribersEntity>,
+    @InjectRepository(GameEntity)
+    private readonly gamesRepository: Repository<GameEntity>,
   ) {}
 
   getAccountRepository(): Repository<AccountEntity> {
@@ -21,5 +23,9 @@ export class UnitOfWorkService {
 
   getMvpSubscribersRepository(): Repository<MvpSubscribersEntity> {
     return this.mvpSubscribersRepository;
+  }
+
+  getGamesRepository(): Repository<GameEntity> {
+    return this.gamesRepository;
   }
 }
