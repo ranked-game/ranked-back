@@ -23,7 +23,7 @@ export class TokensService {
       {
         id: account.id,
         email: account.email,
-        exp: jwtConfig.accessTokenLifetime,
+        exp: Math.floor(Date.now() / 1000) + jwtConfig.accessTokenLifetime,
       },
       jwtConfig.secret,
     );

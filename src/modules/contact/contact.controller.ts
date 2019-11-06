@@ -1,5 +1,5 @@
 // Core
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 
 // Services
 import { EmailService } from '../mail';
@@ -10,6 +10,7 @@ import { SubscribeMvpDto } from './dto';
 
 // Utils
 import { v4 as uuid } from 'uuid';
+import { ApiImplicitBody } from '@nestjs/swagger';
 
 @Controller('contact')
 export class ContactController {
@@ -19,6 +20,7 @@ export class ContactController {
   ) {}
 
   @Post('mvp/subscribe')
+  @ApiImplicitBody({ name: '', type: SubscribeMvpDto })
   async subscribeMvp(@Body() subscriber: SubscribeMvpDto) {
     const { email } = subscriber;
 
@@ -33,5 +35,14 @@ export class ContactController {
     }
 
     return { success: true };
+  }
+
+  @Get('mvp/subscribe')
+  async subscribers() {
+    // Save to db
+    const mvpRepository = await this.unitOfWork.getMvpSubscribersRepository();
+    const subscribers = await mvpRepository.find();
+
+    return { success: true, data: subscribers };
   }
 }
