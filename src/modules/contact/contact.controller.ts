@@ -10,6 +10,7 @@ import { SubscribeMvpDto } from './dto';
 
 // Utils
 import { v4 as uuid } from 'uuid';
+import { ApiImplicitBody } from '@nestjs/swagger';
 
 @Controller('contact')
 export class ContactController {
@@ -19,6 +20,7 @@ export class ContactController {
   ) {}
 
   @Post('mvp/subscribe')
+  @ApiImplicitBody({ name: '', type: SubscribeMvpDto })
   async subscribeMvp(@Body() subscriber: SubscribeMvpDto) {
     const { email } = subscriber;
 
