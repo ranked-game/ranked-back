@@ -1,5 +1,5 @@
 // Core
-import { NestMiddleware, HttpStatus, Injectable } from '@nestjs/common';
+import { NestMiddleware, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 
 // Exceptions
@@ -17,6 +17,8 @@ interface IGetUserAuthInfoRequest extends Request {
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
+  private readonly logger = new Logger(AuthMiddleware.name);
+
   async use(req: IGetUserAuthInfoRequest, res: Response, next: NextFunction) {
     const header = req.header('Authorization');
     if (header) {
@@ -26,7 +28,7 @@ export class AuthMiddleware implements NestMiddleware {
         const decoded = jwt.verify(token, jwtConfig.secret);
         req.user = decoded;
       } catch (e) {
-        console.log(e);
+        this.logger.debug(e);
         throw new HttpException('Not authorized.', HttpStatus.UNAUTHORIZED);
       }
 
