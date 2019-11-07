@@ -44,10 +44,12 @@ export class AuthorizationController {
     }
 
     // Create new account if not exists
-    const { email } = authData;
+    const { email, avatar } = authData;
     let account = await this.accountsService.findByEmail(email);
     if (!account) {
-      account = await this.accountsService.create(authData.email);
+      account = await this.accountsService.create(authData.email, avatar);
+    } else if (account && !account.logo) {
+      await this.accountsService.updateAvatar(account.id, avatar);
     }
 
     // Generate tokens

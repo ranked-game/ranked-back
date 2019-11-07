@@ -62,9 +62,8 @@ export class GoogleAuthService {
     return {
       id: userGoogleId,
       email: userGoogleEmail,
+      avatar: me.data.image.url,
       tokens,
-      name: me.data.name.givenName,
-      surname: me.data.name.familyName,
     };
   };
 }
