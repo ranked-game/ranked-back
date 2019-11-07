@@ -18,12 +18,18 @@ export class AccountEntity {
   @Column({ length: 300, nullable: false, unique: true })
   email: string;
 
+  @Column({ length: 50, nullable: false, default: '' })
+  nickname: string;
+
+  @Column({ length: 500, nullable: true })
+  logo: string;
+
+  @OneToMany(type => GameEntity, game => game.account)
+  games: GameEntity[];
+
   @CreateDateColumn()
   created: string;
 
   @UpdateDateColumn()
   updated: number;
-
-  @OneToMany(type => GameEntity, game => game.account)
-  games: GameEntity[];
 }

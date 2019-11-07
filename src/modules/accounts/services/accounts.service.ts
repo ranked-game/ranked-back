@@ -18,6 +18,7 @@ export class AccountsService {
     const accountEntity = new AccountEntity();
     accountEntity.id = uuid();
     accountEntity.email = email;
+    accountEntity.nickname = email.split('@')[0];
 
     await accountRepository.insert(accountEntity);
 
