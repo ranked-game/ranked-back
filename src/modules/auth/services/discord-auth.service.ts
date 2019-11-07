@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 // Services
 import fetch from 'node-fetch';
-const btoa = require('btoa');
+import btoa from 'btoa';
 
 @Injectable()
 export class DiscordAuthService {
@@ -39,6 +39,7 @@ export class DiscordAuthService {
         Authorization: `Bearer ${tokenJson.access_token}`,
       },
     });
+
     const account = await accountResponse.json();
     if (!account.verified) {
       return null;

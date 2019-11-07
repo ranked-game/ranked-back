@@ -80,11 +80,21 @@ export class AuthorizationController {
       return res.redirect(authRedirects.failed);
     }
 
+    // Avatar
+    let avatar = null;
+    if (authData.avatar) {
+      avatar = `https://cdn.discordapp.com/avatars/${authData.id}/${
+        authData.avatar
+      }`;
+    }
+
     // Create new account if not exists
     const { email } = authData;
     let account = await this.accountsService.findByEmail(email);
     if (!account) {
-      account = await this.accountsService.create(authData.email);
+      account = await this.accountsService.create(authData.email, avatar);
+    } else if (account && !account.logo) {
+      await this.accountsService.updateAvatar(account.id, avatar);
     }
 
     // Generate tokens
