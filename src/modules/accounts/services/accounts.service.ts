@@ -19,7 +19,7 @@ export class AccountsService {
     accountEntity.id = uuid();
     accountEntity.email = email;
     accountEntity.nickname = email.split('@')[0];
-    accountEntity.logo = avatar;
+    accountEntity.avatar = avatar;
 
     await accountRepository.insert(accountEntity);
 
@@ -36,7 +36,7 @@ export class AccountsService {
   async updateAvatar(id: string, avatar: string) {
     const accountRepository = this.unitOfWorkService.getAccountRepository();
 
-    await accountRepository.update(id, { logo: avatar });
+    await accountRepository.update(id, { avatar });
 
     return true;
   }

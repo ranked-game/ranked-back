@@ -22,7 +22,7 @@ export class AccountEntity {
   nickname: string;
 
   @Column({ length: 500, nullable: true })
-  logo: string;
+  avatar: string;
 
   @OneToMany(type => GameEntity, game => game.account)
   games: GameEntity[];
