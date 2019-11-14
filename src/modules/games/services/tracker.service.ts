@@ -5,19 +5,23 @@ import { Injectable, Logger } from '@nestjs/common';
 import { StartGameDto, EndGameDto } from '../dto';
 
 // Services
-import { RedisStorageService, UnitOfWorkService } from '../../dbl';
+import { RedisStorageService, UnitOfWorkService, GameEntity } from '../../dbl';
 
 // Utils
 import { v4 as uuid } from 'uuid';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TrackerService {
   private readonly logger = new Logger(TrackerService.name);
+  private readonly gamesRepository: Repository<GameEntity>;
 
   constructor(
     private readonly redis: RedisStorageService,
     private readonly dbUnit: UnitOfWorkService,
-  ) {}
+  ) {
+    this.gamesRepository = dbUnit.getGamesRepository();
+  }
 
   public async startGame(gameData: StartGameDto, accountId: string) {
     const game = { date: Date.now(), ...gameData };
@@ -25,6 +29,12 @@ export class TrackerService {
     await this.redis.hset('game', accountId, JSON.stringify(game));
 
     return true;
+  }
+
+  public async history(accountId: string) {
+    const games = await this.gamesRepository.find({ where: { accountId } });
+
+    return games;
   }
 
   public async gameDuration(gameData: EndGameDto, accountId: string) {
