@@ -1,5 +1,5 @@
 // Core
-import { Controller, Post, Body, HttpException } from '@nestjs/common';
+import { Controller, Post, Body, HttpException, Get } from '@nestjs/common';
 
 // Dto
 import { StartGameDto, EndGameDto } from './dto';
@@ -41,6 +41,13 @@ export class GamesController {
       accountId,
       duration,
     );
+
+    return { success: true, data };
+  }
+
+  @Get('/history')
+  async history(@User('id') accountId: string) {
+    const data = await this.trackerService.history(accountId);
 
     return { success: true, data };
   }
