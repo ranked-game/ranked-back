@@ -32,7 +32,7 @@ export class AccountsController {
       gamesPlayedLifetime: 0,
       currentTournaments: [],
       team: {},
-      pointsEarnedLifetime: { solo: [], party: [] },
+      pointsEarnedLifetime: { solo: 0, party: 0 },
     };
   }
 }
