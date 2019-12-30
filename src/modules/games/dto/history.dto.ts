@@ -1,12 +1,12 @@
-import { IsNumber } from 'class-validator';
+import { IsNumberString } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 
 export class HistoryDto {
   @ApiModelProperty()
-  @IsNumber()
+  @IsNumberString()
   page: number;
 
   @ApiModelProperty()
-  @IsNumber()
+  @IsNumberString()
   limit: number;
 }
