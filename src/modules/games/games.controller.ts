@@ -1,6 +1,7 @@
 // Core
 import {
   Controller,
+  Logger,
   Post,
   Body,
   HttpException,
@@ -24,6 +25,8 @@ import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 @ApiUseTags('games')
 @Controller('games')
 export class GamesController {
+  private readonly logger = new Logger(GamesController.name);
+
   constructor(private readonly trackerService: TrackerService) {}
 
   @Post('/start')
@@ -32,6 +35,8 @@ export class GamesController {
     @User('id') accountId: string,
   ) {
     await this.trackerService.startGame(startGame, accountId);
+
+    this.logger.log(`Start Game: ${accountId}, ${JSON.stringify(startGame)}`);
 
     return { success: true, data: startGame };
   }
@@ -53,6 +58,8 @@ export class GamesController {
       accountId,
       duration,
     );
+
+    this.logger.log(`End Game: ${accountId}, ${JSON.stringify(endGame)}`);
 
     return { success: true, data };
   }
