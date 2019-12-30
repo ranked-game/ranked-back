@@ -60,7 +60,7 @@ export class GamesController {
   @Get('/history')
   async history(@User('id') accountId: string, @Query() query: HistoryDto) {
     const { page, limit } = query;
-    const data = await this.trackerService.history(accountId);
+    const data = await this.trackerService.history(accountId, page, limit);
 
     return { success: true, data };
   }
