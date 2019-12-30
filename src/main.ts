@@ -20,7 +20,7 @@ async function bootstrap() {
   // Add middlewares
   app.use(helmet());
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.setGlobalPrefix('api');
 
   // Setup docs
