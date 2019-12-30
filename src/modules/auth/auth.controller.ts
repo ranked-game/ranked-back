@@ -45,6 +45,7 @@ export class AuthorizationController {
     const { code } = params;
     const authData = await this.googleAuthService.userDataByCode(code);
     if (!authData) {
+      this.logger.error(`Auth error google: invalid auth data ${code}`);
       return res.redirect(authRedirects.failed);
     }
 
@@ -84,6 +85,7 @@ export class AuthorizationController {
     const authData = await this.discordAuthService.userDataByCode(code);
 
     if (!authData) {
+      this.logger.error(`Auth error discord: invalid auth data ${code}`);
       return res.redirect(authRedirects.failed);
     }
 
