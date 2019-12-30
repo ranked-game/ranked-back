@@ -10,6 +10,11 @@ import { TrackerService } from './services';
 // Decorators
 import { User } from '../auth';
 
+// Docs
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('games')
 @Controller('games')
 export class GamesController {
   constructor(private readonly trackerService: TrackerService) {}
