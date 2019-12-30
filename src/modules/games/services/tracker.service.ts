@@ -38,7 +38,10 @@ export class TrackerService {
       take: limit,
     });
 
-    return games;
+    const count = await this.gamesRepository.count({ where: { accountId } });
+    const pages = Math.ceil(count / limit);
+
+    return { data: games, page, pages };
   }
 
   public async gameDuration(gameData: EndGameDto, accountId: string) {
