@@ -1,8 +1,15 @@
 // Core
-import { Controller, Post, Body, HttpException, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  HttpException,
+  Get,
+  Query,
+} from '@nestjs/common';
 
 // Dto
-import { StartGameDto, EndGameDto } from './dto';
+import { StartGameDto, EndGameDto, HistoryDto } from './dto';
 
 // Services
 import { TrackerService } from './services';
@@ -10,6 +17,11 @@ import { TrackerService } from './services';
 // Decorators
 import { User } from '../auth';
 
+// Docs
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('games')
 @Controller('games')
 export class GamesController {
   constructor(private readonly trackerService: TrackerService) {}
@@ -46,7 +58,8 @@ export class GamesController {
   }
 
   @Get('/history')
-  async history(@User('id') accountId: string) {
+  async history(@User('id') accountId: string, @Query() query: HistoryDto) {
+    const { page, limit } = query;
     const data = await this.trackerService.history(accountId);
 
     return { success: true, data };

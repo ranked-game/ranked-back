@@ -31,8 +31,12 @@ export class TrackerService {
     return true;
   }
 
-  public async history(accountId: string) {
-    const games = await this.gamesRepository.find({ where: { accountId } });
+  public async history(accountId: string, page: number, limit: number) {
+    const games = await this.gamesRepository.find({
+      where: { accountId },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
 
     return games;
   }

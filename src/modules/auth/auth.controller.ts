@@ -16,6 +16,11 @@ import * as queryString from 'query-string';
 // Configs
 import { authRedirects } from './config';
 
+// Docs
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('auth')
 @Controller('auth')
 export class AuthorizationController {
   private readonly logger = new Logger(AuthorizationController.name);

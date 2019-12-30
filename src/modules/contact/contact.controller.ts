@@ -12,6 +12,11 @@ import { SubscribeMvpDto } from './dto';
 import { v4 as uuid } from 'uuid';
 import { ApiImplicitBody } from '@nestjs/swagger';
 
+// Docs
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('contact')
 @Controller('contact')
 export class ContactController {
   constructor(

@@ -10,6 +10,11 @@ import { User } from '../auth';
 // Utils
 import { Repository } from 'typeorm';
 
+// Docs
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('account')
 @Controller('account')
 export class AccountsController {
   private readonly logger = new Logger(AccountsController.name);
