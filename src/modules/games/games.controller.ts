@@ -62,6 +62,6 @@ export class GamesController {
     const { page, limit } = query;
     const data = await this.trackerService.history(accountId, page, limit);
 
-    return { success: true, data };
+    return { success: true, ...data };
   }
 }
